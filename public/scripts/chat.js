@@ -7,6 +7,10 @@ $(function(){
 		$("#user").val(name['username']['name']);
 	});
 
+	socket.on('usernames', function(names){
+		$("#users-number").val(names.length);
+	})
+
 	// send a message to the server from a user when the + button is pressed
 	$("#chat-submit").click(function() {
 		// $("#message-list").append("<li>" + $("#user").val() + ": " + $("#message").val() + "</li>");
