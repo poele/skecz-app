@@ -27,6 +27,7 @@ $(function(){
 	// append a user's message to the message list
 	socket.on('message', function(message){
 		$("#chat-message-list").append("<li><p>" + message['message'] + "</p></li>");
+		$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 	});
 
 	// append the date with the user's message to the message list
@@ -36,6 +37,5 @@ $(function(){
 
 	// scrolls to bottom of chat/most recent message
 
-	$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 
 });
