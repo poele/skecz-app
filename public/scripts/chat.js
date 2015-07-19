@@ -34,5 +34,8 @@ $(function(){
 		$("#chat-message-list").append("<li>" + "<span class='date-time'>" + date + "</span>" + "</li>");
 	});
 
+	// scrolls to bottom of chat/most recent message
+
+	$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 
 });
