@@ -1,0 +1,170 @@
+<!DOCTYPE html>  
+<html lang="en">  
+  <head>
+    <meta charset="utf-8">
+    <title>SKECZ YOUR DREAMS</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+ 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/spacelab/bootstrap.css">
+ 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.5/css/bootstrap-select.min.css">
+    <link href="styles/style.css" rel="stylesheet">
+		<link rel='stylesheet' href='styles/spectrum.css'>
+
+
+    <!-- head scripts -->
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src='scripts/spectrum.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.5/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+
+  </head>
+  <body>
+<script>
+var socket = io();
+
+// 'logs' a user in, assuming the name they're trying to use isn't taken or an empty string
+
+socket.on('authorize', function(name) {
+  name = window.prompt('please select a username');
+  socket.emit('register', {name: name});
+});
+</script>
+
+<!-- CHAT BOX -->
+
+	<div id="chat">
+		<div id="chat-header">
+			Welcome, <input type="text" id="user" READONLY/>
+			<hr>
+		</div>
+
+		<div id="chat-messages">
+			<ul id="chat-message-list">
+			</ul>
+		</div>
+
+		<div id="chat-input">
+			<input type="text" id="message"/>
+			<button id="chat-submit">+</button>
+		</div>
+	</div>
+
+
+<!-- CANVAS -->
+
+	<div class="main-drawing-box">
+		<button id="toggle-chat">← chatbox</button>
+
+
+		<button id="toggle-tools">toolbox →</button>
+
+		<canvas id="main-canvas"></canvas>
+
+	</div>
+</div>
+
+<!-- TOOLS -->
+
+<div id="tools">
+
+		<div id="clear-canvas">
+			<button id="clearer">clear canvas</button>
+		</div>
+
+		<div id="download-box">
+			<a id="downloader" download="picture.jpg">
+				<button>save picture</button>
+			</a>
+		</div>
+		<hr>
+
+		<div id="tool-size">
+			<label for="ranger">Tool width:</label> <span id="tool-width">1</span>
+			<input type="range" id="ranger" class="deranged" max="100" value="1">
+		</div>
+
+		<div id="blending-modes">
+			<label for="modes">Blending Modes:</label>
+			<br>
+			<select id="modes" class="selectpicker">
+			  <option value="normal" data-icon="glyphicon-cd">normal</option>
+			  <option value="multiply" data-icon="glyphicon-sunglasses">multiply</option>
+			  <option value="screen" data-icon="glyphicon-lamp">screen</option>
+			  <option value="overlay" data-icon="glyphicon-eye-open">overlay</option>
+			  <option value="darken" data-icon="glyphicon-triangle-bottom">darken</option>
+			  <option value="lighten" data-icon="glyphicon-triangle-top">lighten</option>
+			  <option value="color-dodge" data-icon="glyphicon-plane">color-dodge</option>
+			  <option value="color-burn" data-icon="glyphicon-fire">color-burn</option>
+			  <option value="hard-light" data-icon="glyphicon-flash">hard-light</option>
+			  <option value="soft-light" data-icon="glyphicon-camera">soft-light</option>
+			  <option value="difference" data-icon="glyphicon-text-background">difference</option>
+			  <option value="exclusion" data-icon="glyphicon-scissors">exclusion</option>
+			  <option value="hue" data-icon="glyphicon-filter">hue</option>
+			  <option value="saturation" data-icon="glyphicon-tint">saturation</option>
+			  <option value="color" data-icon="glyphicon-picture">color</option>
+			  <option value="luminosity" data-icon="glyphicon-adjust">luminosity</option>
+			</select>
+		</div>
+
+		<div id="colour-pick">
+			<label for="custom">pick</label><br>
+			<input type='text' id="custom" value="#000"/>
+		</div>
+
+		<div id="sample-tool">
+			<label for="sampler">sample</label><br>
+			<button id="sampler">♠</button>
+		</div>
+
+</div>
+
+
+<!-- end of page -->
+
+<div class="footer">
+© someone who did not intend for this to be pornographic in nature 2015
+</div>
+
+<!-- end of page scripts -->
+<script>
+
+$(function(){
+
+	$("#toggle-chat").click(function(){
+		$(this).text(function(text){
+			return text === "← chatbox" ? "chatbox  →" : "← chatbox";
+		});
+		$("#chat").toggle('slide', {direction: 'left'}, 1000);
+		$("#chat-messages").toggle('slide', {direction: 'left'}, 1000);
+		$("#chat-input").toggle('slide', {direction: 'left'}, 1000);
+	});
+
+	$("#toggle-tools").click(function(){
+		$(this).text(function(text){
+			return text === "toolbox →" ? "← toolbox" : "toolbox →";
+		});
+		$("#tools").toggle('slide', {direction: 'right'}, 1000);
+		$("#clear-canvas").toggle('slide', {direction: 'right'}, 1000);
+		$("#tool-size").toggle('slide', {direction: 'right'}, 1000);
+		$("#colour-pick").toggle('slide', {direction: 'right'}, 1000);
+		$("#sample-tool").toggle('slide', {direction: 'right'}, 500);
+	});
+
+
+});
+
+</script>
+
+<script src="scripts/draw.js"></script>
+<script src="scripts/chat.js"></script>
+
+  </body>
+</html>  

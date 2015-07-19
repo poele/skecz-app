@@ -1,0 +1,40 @@
+$one: #CDE8D5;
+$two: #5B3E38;
+$three: #0E4E5A;
+$four: #3F4038; 
+$five: #000306; 
+
+$accent: #1dc1fe;
+
+
+@import "drawing.scss";
+@import "slider.scss";
+
+
+
+body {
+	background-color: $five;
+	color: $four;
+}
+
+hr {
+	border: 1px solid $four;
+}
+
+button {
+	background: $three;
+	border: 0px;
+	border-radius: 5px;
+	box-shadow: 0 3px 0 0 $five;
+	font-weight: bolder;
+	color: $one;
+}
+
+button:focus, button:hover, button:active {
+	background: $two;
+	outline-color: $two;
+}
+
+button:active, button.active {
+	box-shadow: none;
+}
