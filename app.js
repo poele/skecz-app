@@ -8,13 +8,15 @@ var sassMiddleware = require('node-sass-middleware');
 var path = require('path');
 var app = express();
 
-var server = http.createServer(app);
+app.set('port', process.env.PORT || 80);
+var server = app.listen(app.get('port'), function() {
+	debug('Express server listening on port ' + + server.address().port);
+});
 var io = require('socket.io').listen(server);
-var port = normalizePort(process.env.PORT || '80');
+
 
 app.use(morgan('combined'));
 app.set('view engine', 'ejs');
-app.set('port', port);
 app.use(sassMiddleware({
 src: path.join(__dirname, 'sass'),
 dest: path.join(__dirname, 'public'),
