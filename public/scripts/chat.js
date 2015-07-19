@@ -8,7 +8,8 @@ $(function(){
 	});
 
 	socket.on('usernames', function(names){
-		$("#users-number").val(names.length);
+		console.log(names.length);
+		$("#users-number").text(names.length);
 	})
 
 	// send a message to the server from a user when the + button is pressed
