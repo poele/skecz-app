@@ -207,7 +207,6 @@ $("#sampler").on('click', function(){
 	// renders each line that is drawn while mousedown is still true/isDrawing is still true
 
 	socket.on('draw', function(data){
-			ctx.globalAlpha = 0.2;
 			ctx.globalCompositeOperation = data.blend;
 			ctx.lineWidth = data.thickness;
 			ctx.lineJoin = 'round';
