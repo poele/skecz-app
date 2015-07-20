@@ -46,6 +46,7 @@ io.on('connection', function(socket){
 	  	console.log(names);
 	  	socket.emit('username', {username: name});
 	  	io.emit('usernames', {usernames: names});
+	  	io.emit('canvascall', {usernames: names});
   	} 
 // if the name is taken/an empty string, it will reprompt the user until there's a valid username
   	else {
@@ -66,9 +67,13 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function() {
 		var index = names.indexOf(logout);
 		names.splice(index, 1);
+		io.emit('userdown', {usernames: names})
 	});
+// sends the oldest user's canvas to the users in the room (so that the newest user can have it loaded)
 
-
+	socket.on('oldcanvas', function(data){
+		io.emit('canvasloader', {data: data});
+	});
 
 
 

@@ -15,6 +15,7 @@ var socket = io();
 	var ctx = canvas.getContext("2d");
 
 
+
 	var box = document.querySelector(".main-drawing-box");
 	var boxStyle = getComputedStyle(box);
 	canvas.width = parseInt(boxStyle.getPropertyValue('width'));
@@ -39,6 +40,31 @@ var socket = io();
 		var dLink = canvas.toDataURL('image/jpeg');
     this.href = dLink;
 	});
+
+	// gets the canvas of the oldest user and sends it to the server
+
+	socket.on('canvascall', function(users){
+		var user = document.getElementById("user").value;
+		if (users.usernames[0] === user && users.usernames.length > 1) {
+			var data = {
+				cvs: canvas.toDataURL(),
+				newuser: users.usernames[users.usernames.length - 1]
+			};
+			socket.emit('oldcanvas', data);
+		}
+	})
+
+	// gets the oldest user's canvas and renders it for the newest user
+
+	socket.on('canvasloader', function(info){
+		var user = document.getElementById("user").value;
+		if (info.data.newuser === user){
+			var img = new Image();
+			img.src = info.data.cvs;
+			ctx.drawImage(img,0,0);
+		}
+
+	})
 
 
 

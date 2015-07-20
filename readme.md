@@ -8,6 +8,8 @@
 
 - come see it [here](https://skeczi.herokuapp.com/)
 
+- [trello board for the weird strangers that like to look at boring things like building plans (seriously who does that)](https://trello.com/b/yNNkHpV2/gabriella-lubliner-skecz-app)
+
 - in addition to the basics, i also used:
 
 - [spectrum js, a colour picker library](https://bgrins.github.io/spectrum/)

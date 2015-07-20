@@ -11,6 +11,10 @@ $(function(){
 		$("#users-number").text(names.usernames.length);
 	})
 
+	socket.on('userdown', function(names){
+		$("#users-number").text(names.usernames.length);
+	})
+
 	// send a message to the server from a user when the + button is pressed
 	$("#chat-submit").click(function() {
 		// $("#message-list").append("<li>" + $("#user").val() + ": " + $("#message").val() + "</li>");
@@ -39,7 +43,7 @@ $(function(){
 		$("#chat-message-list").append("<li>" + "<span class='date-time'>" + date + "</span>" + "</li>");
 	});
 
-	// scrolls to bottom of chat/most recent message
+
 
 
 });
