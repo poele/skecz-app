@@ -14,11 +14,16 @@ var socket = io();
 	var blendMode = 'normal';
 	var ctx = canvas.getContext("2d");
 
+
 	var box = document.querySelector(".main-drawing-box");
 	var boxStyle = getComputedStyle(box);
 	canvas.width = parseInt(boxStyle.getPropertyValue('width'));
 	canvas.height = parseInt(boxStyle.getPropertyValue('height'));
 
+	// sets the canvas background to white
+
+	ctx.fillStyle = "#FFF"
+	ctx.fillRect(0,0, canvas.width, canvas.height)
 
 
 	// emits a clear proposal to the server and the name of the user who sent the proposal 
@@ -195,7 +200,8 @@ $("#sampler").on('click', function(){
 			window.alert("Looks like it was a tie. Perhaps another vote is in order?");
 		}
 		else if (clear === true){
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = "#FFF";
+			ctx.fillRect(0,0, canvas.width, canvas.height);
 		} 
 		else {
 			window.alert("Sorry, most people don't want to clear the board yet.");
