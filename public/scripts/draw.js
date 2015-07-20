@@ -23,8 +23,13 @@ var socket = io();
 
 	// sets the canvas background to white
 
-	ctx.fillStyle = "#FFF"
-	ctx.fillRect(0,0, canvas.width, canvas.height)
+	socket.on('usernames', function(names){
+		if (names.usernames.length === 1) {
+			ctx.fillStyle = "#FFF";
+			ctx.fillRect(0,0, canvas.width, canvas.height);
+		}
+	})
+
 
 
 	// emits a clear proposal to the server and the name of the user who sent the proposal 
@@ -226,7 +231,7 @@ $("#sampler").on('click', function(){
 			window.alert("Looks like it was a tie. Perhaps another vote is in order?");
 		}
 		else if (clear === true){
-			ctx.clearRect(0,0, canvas.width, canvas.height)
+			ctx.clearRect(0,0, canvas.width, canvas.height);
 			ctx.globalAlpha = 1;
 			ctx.fillStyle = "#FFF";
 			ctx.fillRect(0,0, canvas.width, canvas.height);
