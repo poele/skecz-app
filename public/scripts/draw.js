@@ -200,6 +200,8 @@ $("#sampler").on('click', function(){
 			window.alert("Looks like it was a tie. Perhaps another vote is in order?");
 		}
 		else if (clear === true){
+			ctx.clearRect(0,0, canvas.width, canvas.height)
+			ctx.globalAlpha = 1;
 			ctx.fillStyle = "#FFF";
 			ctx.fillRect(0,0, canvas.width, canvas.height);
 		} 
